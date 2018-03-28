@@ -1,7 +1,7 @@
 
 **ANALYSIS**
 
-1. Almost four - fifths (77,8%) of all drivers are from urban territtories. They make 87% of their rides in cities and the rest in suburbs and rural areas. With such a high numbers, these rides rise only 46% of company's proceeds.
+1. Almost four - fifths (77,8%) of all drivers are from urban territories. They make 87% of their rides in cities and the rest in suburbs and rural areas. With such a high number, these rides rise only 46% of company's proceeds.
 2. Suburban rides make up only 26% of all rides, but the average fare is higher than that in cities, therefore they bring more than one third of a total revenue, that means that this area of activity can be developed in a future.
 3. Rural area fares are the most expensive ones - the average fare is almost 40% higher than the one in an urban city. With only 3% of all drivers and 5% of all rides, rural area brings more than 17% of a total revenue.
 
@@ -169,23 +169,20 @@ for drcount in [5,25,45,70]:
     plt.scatter([], [], c='k', alpha=0.3, s=drcount*4, label=str(drcount) + ' drivers', edgecolor='black', linewidth=2)
 plt.legend(scatterpoints=1, markerscale=2, loc=1, fontsize='large', labelspacing=1,
            title='City Types and\nDriver Count Per City:')
+plt.savefig('Images/Pyber Ride Sharing Data.png')
 ```
 
 
-
-
-    <matplotlib.legend.Legend at 0x107aa79b0>
-
-
-
-
-![png](output_15_1.png)
+![png](output_15_0.png)
 
 
 **Total Fares by City Type**
 
 
 ```python
+from matplotlib import style
+style.use('fivethirtyeight')
+
 onemorecopy = allmerged.copy()
 forpies = onemorecopy.groupby('City Type')
 pie_df = forpies.sum()
@@ -195,9 +192,10 @@ explode_f = [0.1 if (item/(pie_df['Average Fare ($)']).sum()*100) < 20 else 0.0 
 
 farebysity = pie_df.plot(kind='pie', y= 'Average Fare ($)', title=('% of Total Fares by City Type'),
                           colors=['#FFD700', '#87cefa', '#f08080'], autopct="%1.1f%%", shadow=True, startangle=360,
-                          center=(0,0), explode = explode_f)
+                          center=(0,0), explode = explode_f, figsize=(7,5), legend=False)
 plt.ylabel('')
 plt.tight_layout()
+plt.savefig('Images/Fares by City Type.png')
 ```
 
 
@@ -275,9 +273,10 @@ explode_r = [0.1 if (item/(pie_df['Total Number of Rides (Per City)']).sum()*100
 
 farebysity = pie_df.plot(kind='pie', y= 'Total Number of Rides (Per City)', title=('% of Total Rides by City Type'),
                           colors=['#FFD700', '#87cefa', '#f08080'], autopct="%1.1f%%", shadow=True, startangle=360,
-                          center=(0,0), explode = explode_r)
+                          center=(0,0), explode = explode_r, figsize=(7,5), legend=False)
 plt.ylabel('')
 plt.tight_layout()
+plt.savefig('Images/Rides by City Type.png')
 ```
 
 
@@ -292,9 +291,10 @@ explode_d = [0.1 if (item/(pie_df['Driver Count']).sum()*100) < 20 else 0.0 for 
 
 farebysity = pie_df.plot(kind='pie', y= 'Driver Count', title=('% of Total Drivers by City Type'),
                           colors=['#FFD700', '#87cefa', '#f08080'], autopct="%1.1f%%", shadow=True, startangle=360,
-                          center=(0,0), explode = explode_d)
+                          center=(0,0), explode = explode_d, figsize=(7,5), legend=False)
 plt.ylabel('')
 plt.tight_layout()
+plt.savefig('Images/Drivers by City Type.png')
 ```
 
 
@@ -310,15 +310,9 @@ sns.lmplot(x='Total Number of Rides (Per City)', y='Average Fare ($)', data=forp
           legend_out=False)
 plt.ylim(15, None)
 plt.xlim(0, None)
+plt.savefig('Images/Seaborn test.png')
 ```
 
 
-
-
-    (0, 36.371000419608976)
-
-
-
-
-![png](output_23_1.png)
+![png](output_23_0.png)
 
